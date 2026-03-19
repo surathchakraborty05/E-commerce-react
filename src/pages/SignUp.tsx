@@ -95,6 +95,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     localStorage.setItem("user", JSON.stringify(data[0])); 
   }
   alert("Account created!");
+  navigate('/');
 };
 const handleLogin = () => {
     navigate('/login');
