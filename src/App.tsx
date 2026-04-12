@@ -23,6 +23,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login.tsx';
 import OrderHistory from './pages/Orderhistory';
 import OrderSummary from './pages/OrderSummary.tsx';
+import CategoryPage from './components/CategoryPage.tsx';
 function App() {
   return (
     <BrowserRouter>
@@ -37,6 +38,7 @@ function App() {
         <Route path="/login" element={<Login onSignUp={() => {}} 
     onLogin={() => {}}/>} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/category/:categoryId" element={<CategoryPage/>} />
       </Routes>
     </BrowserRouter>
   );

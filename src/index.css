@@ -64,10 +64,10 @@
     @apply text-white font-sans;
     background-color: var(--bg-color);
     color: var(--text-color); 
-    background-image: 
+    /* background-image: 
       radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
       radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.05) 0%, transparent 40%),
-      url('https://images.unsplash.com/photo-1526116977494-90748acc0cad?fm=jpg&amp;q=60&amp;w=3000&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWVzdGhldGljJTIwYm95fGVufDB8fDB8fHww');
+      url('https://images.unsplash.com/photo-1526116977494-90748acc0cad?fm=jpg&amp;q=60&amp;w=3000&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWVzdGhldGljJTIwYm95fGVufDB8fDB8fHww'); */
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
@@ -125,4 +125,9 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 243, 255, 0.4);
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

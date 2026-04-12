@@ -30,7 +30,7 @@
 // const GlassCard = ({ children, className, title }: { children: React.ReactNode, className?: string, title?: string }) => (
 //   <div className={cn("glass-card p-6 relative overflow-hidden group", className)}>
 //     <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] opacity-10" />
-    
+
 //     {title && (
 //       <div className="flex items-center justify-between mb-6">
 //         <h3 className="font-display font-semibold text-xs uppercase tracking-[0.2em] text-white/40">{title}</h3>
@@ -136,7 +136,7 @@
 // // ];
 // export default function Wishlist() {
 //   // App ya component me
- 
+
 //   const currentUser = JSON.parse(localStorage.getItem("user") || "null") as user | null;
 //   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]); 
 //   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
@@ -282,7 +282,7 @@
 //   </h1>
 //             <p className="text-black/70 text-sm font-mono uppercase tracking-widest text-black/70">Status: {USER_DATA.rank} // {USER_DATA.id}</p>
 //           </div>
-          
+
 //           <div className="flex items-center gap-4">
 //             <div className="relative group">
 //               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 group-focus-within:text-neon-cyan transition-colors" />
@@ -354,7 +354,7 @@
 //       ))}
 //     </motion.div>
 //     </main>
-    
+
 //   );
 // }
 // src/components/Wishlist.tsx
@@ -432,7 +432,7 @@ export default function Wishlist() {
         .from('wishlist')
         .select('*')
         .eq('user_id', currentUser.id);
-        console.log('Raw wishlist data from Supabase:', data);
+      console.log('Raw wishlist data from Supabase:', data);
       if (error) {
         console.error('Error fetching wishlist:', error);
         return;
@@ -440,11 +440,11 @@ export default function Wishlist() {
 
       if (data) {
         const formattedData: WishlistItem[] = data.map((item: any) => ({
-          id: item.product_id,            
-          name: item.product_name,         
-          price: item.product_price,              
+          id: item.product_id,
+          name: item.product_name,
+          price: item.product_price,
           rarity: item.rarity,
-          image_url: item.product_image,   
+          image_url: item.product_image,
           description: item.description,
         }));
         setWishlistItems(formattedData);
@@ -455,7 +455,20 @@ export default function Wishlist() {
   }, [currentUser]);
 
   return (
-    <main className="flex-1 overflow-y-auto p-6 lg:p-12">
+    <main className="relative min-h-screen flex-1 overflow-y-auto p-6 lg:p-12">
+      <div className="fixed inset-0 -z-10">
+        <img
+          src="https://images.unsplash.com/photo-1526116977494-90748acc0cad"
+          className="w-full h-full object-cover"
+        />
+
+        {/* DARK OVERLAY for glass effect */}
+        <div className="absolute inset-0 bg-white/6 backdrop-blur-[2px]" />
+
+        {/* Neon blobs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-neon-cyan/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-neon-magenta/10 rounded-full blur-[120px]" />
+      </div>
       <header className="flex items-center justify-between mb-12">
         <AnimatePresence>
           {isNotificationsOpen && (
@@ -481,7 +494,7 @@ export default function Wishlist() {
                   <div key={n.id} className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group relative overflow-hidden">
                     <div className={cn("absolute left-0 top-0 bottom-0 w-1",
                       n.type === 'success' ? "bg-emerald-500" :
-                      n.type === 'warning' ? "bg-amber-500" : "bg-neon-cyan"
+                        n.type === 'warning' ? "bg-amber-500" : "bg-neon-cyan"
                     )} />
                     <div className="flex justify-between items-start mb-1">
                       <h4 className="font-semibold text-sm text-white/90">{n.title}</h4>
@@ -537,15 +550,15 @@ export default function Wishlist() {
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-transparent to-transparent opacity-60" />
                 <div className="absolute top-3 right-3">
                   <button className="w-8 h-8 rounded-full bg-deep-space/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-neon-magenta hover:bg-neon-magenta hover:text-white transition-all">
-                    <Heart className="w-4 h-4 fill-current"/>
+                    <Heart className="w-4 h-4 fill-current" />
                   </button>
                 </div>
                 <div className={cn(
                   "absolute bottom-3 left-3 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest border",
                   item.rarity === 'Legendary' ? "bg-neon-yellow/10 text-neon-yellow border-neon-yellow/30" :
-                  item.rarity === 'Epic' ? "bg-neon-magenta/10 text-neon-magenta border-neon-magenta/30" :
-                  item.rarity === 'Rare' ? "bg-neon-cyan/10 text-neon-cyan border-neon-cyan/30" :
-                  "bg-white/10 text-white/60 border-white/20"
+                    item.rarity === 'Epic' ? "bg-neon-magenta/10 text-neon-magenta border-neon-magenta/30" :
+                      item.rarity === 'Rare' ? "bg-neon-cyan/10 text-neon-cyan border-neon-cyan/30" :
+                        "bg-white/10 text-white/60 border-white/20"
                 )}>
                   {item.rarity}
                 </div>
@@ -558,24 +571,24 @@ export default function Wishlist() {
                 <p className="text-white/50 text-xs mb-6 line-clamp-2 flex-1">{item.description}</p>
                 <div className="flex gap-2 mt-auto">
                   <button onClick={() => navigate(`/product/${item.id}`)} className="flex-1 bg-white/5 border border-white/10 py-2 rounded-lg text-xs font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                    <ExternalLink className="w-3 h-3"  /> Details
+                    <ExternalLink className="w-3 h-3" /> Details
                   </button>
                   <button onClick={() =>
-    navigate("/ordersummary", {
-      state: {
-        products: [
-          {
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            quantity: 1,
-            image_url: item.image_url,
-            category: item.rarity
-          }
-        ]
-      }
-    })
-  } className="flex-1 bg-neon-cyan text-black py-2 rounded-lg text-xs font-bold hover:neon-glow-cyan transition-all flex items-center justify-center gap-2">
+                    navigate("/ordersummary", {
+                      state: {
+                        products: [
+                          {
+                            id: item.id,
+                            name: item.name,
+                            price: item.price,
+                            quantity: 1,
+                            image_url: item.image_url,
+                            category: item.rarity
+                          }
+                        ]
+                      }
+                    })
+                  } className="flex-1 bg-neon-cyan text-black py-2 rounded-lg text-xs font-bold hover:neon-glow-cyan transition-all flex items-center justify-center gap-2">
                     <ShoppingBag className="w-3 h-3" /> Buy Now
                   </button>
                 </div>

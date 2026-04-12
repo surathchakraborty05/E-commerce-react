@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { ShoppingBag, Search } from 'lucide-react';
+import { ShoppingBag, Search,Shirt,Laptop } from 'lucide-react';
 import AnimatedBackground from './components/AnimatedBackground';
 import ProductCard from './components/ProductCard';
 import ProfileDropdown from './components/ProfileDropdown';
 import { supabase, Product } from './lib/supabase';
-
-
+import HeroCarousel from './components/HeroCarousel'
+import { GiRunningShoe } from "react-icons/gi"
+const categoryIcons: Record<string, React.ReactNode> = {
+  shoes: <GiRunningShoe className="w-4 h-4" />,
+  electronics: <Laptop className="w-4 h-4" />,
+  clothing: <Shirt className="w-4 h-4" />,
+  general: <ShoppingBag className="w-4 h-4" />,
+}
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +52,6 @@ function App() {
   return (
     <div className=" min-h-screen bg-black relative overflow-x-hidden ">
       <AnimatedBackground />
-
       <div className="relative z-10">
         <header className="border-b border-blue-500/20 bg-black/40 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -88,23 +93,29 @@ function App() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
+          <div className="flex flex-wrap gap-3 justify-center mb-12 items-center">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                className={`hover:scale-105 flex items-center gap-2 px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/50'
                     : 'bg-gray-900/40 text-gray-300 border border-blue-500/20 hover:border-blue-400/40 hover:text-white'
                 }`}
               >
+                {categoryIcons[category.toLowerCase()]}
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
           </div>
-
+            <div className="space-y-16 pb-20">
+      {/* Hero Section */}
+      <section>
+        <HeroCarousel />
+      </section> </div>
           {loading ? (
+            
             <div className="flex justify-center items-center min-h-[400px]">
               <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
             </div>
