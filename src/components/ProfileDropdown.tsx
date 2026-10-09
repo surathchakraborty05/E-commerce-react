@@ -53,7 +53,8 @@ export default function ProfileDropdown() {
     setIsOpen(false); 
   };
   const gotologin = () => {
-    navigate('/SignUp');
+    localStorage.removeItem("user");
+    navigate('/login');
     setIsOpen(false); 
   };
 

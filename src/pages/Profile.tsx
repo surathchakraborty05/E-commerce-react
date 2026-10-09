@@ -215,7 +215,7 @@ export default function App() {
   });  
   //   Preferences State
   const goToHome = () => {
-    navigate('/'); 
+    navigate('/shop'); 
   };
   const goTowish = () => {
     navigate('/Wishlist'); 

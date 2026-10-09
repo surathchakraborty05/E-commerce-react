@@ -127,7 +127,7 @@ export default function Login({ onLogin, onSignUp }: LoginProps) {
     });
 
     alert("Login successful!");
-    navigate("/");
+    navigate("/shop");
   };
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-6 relative overflow-hidden">
